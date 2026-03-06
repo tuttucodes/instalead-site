@@ -1,17 +1,1172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>InstaLead Systems</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insta Lead Systems — Sales Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ee;
+    --ink: #0e0e0e;
+    --orange: #e85d20;
+    --orange-light: #ff7a3d;
+    --cream: #f0ead8;
+    --green: #1a6b3a;
+    --green-light: #e8f5ee;
+    --muted: #888070;
+    --border: #d8d0bc;
+    --card: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Instrument Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ANIMATED TICKER */
+  .ticker {
+    background: var(--orange);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 25s linear infinite;
+  }
+
+  .ticker-inner span {
+    margin: 0 40px;
+    opacity: 0.7;
+  }
+
+  .ticker-inner span.dot {
+    margin: 0;
+    opacity: 1;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--orange); }
+
+  .nav-tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'Instrument Sans', sans-serif;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 48px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(26,107,58,0.2);
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  h1.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 7vw, 84px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
+    max-width: 900px;
+  }
+
+  h1.hero-title em {
+    font-style: italic;
+    font-family: 'Instrument Serif', serif;
+    color: var(--orange);
+    font-weight: 400;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 16px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .hero-cta:hover {
+    background: var(--orange);
+    transform: translateY(-2px);
+  }
+
+  .hero-cta-arrow {
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+
+  .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+
+  /* PAIN STRIP */
+  .pain-strip {
+    background: var(--ink);
+    color: white;
+    padding: 48px;
+    margin: 0;
+  }
+
+  .pain-strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pain-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #222;
+  }
+
+  .pain-item {
+    background: var(--ink);
+    padding: 28px 24px;
+  }
+
+  .pain-icon { font-size: 24px; margin-bottom: 12px; }
+
+  .pain-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: white;
+  }
+
+  .pain-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  h2.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  h2.section-title em {
+    font-style: italic;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    color: var(--orange);
+  }
+
+  /* PACKAGE CARD */
+  .package-card {
+    background: var(--ink);
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .package-header {
+    padding: 32px 36px 24px;
+    border-bottom: 1px solid #1e1e1e;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .package-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .package-tagline {
+    font-size: 13px;
+    color: #888;
+  }
+
+  .package-price {
+    text-align: right;
+  }
+
+  .price-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--orange-light);
+    line-height: 1;
+  }
+
+  .price-period {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .package-body {
+    padding: 28px 36px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .package-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  .feature-check {
+    color: var(--orange-light);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .package-footer {
+    background: #0a0a0a;
+    padding: 20px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .package-footer p {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+  }
+
+  /* ROI BOX */
+  .roi-box {
+    background: var(--green-light);
+    border: 1px solid rgba(26,107,58,0.25);
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin-top: 32px;
+  }
+
+  .roi-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+
+  .roi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .roi-item {
+    text-align: center;
+  }
+
+  .roi-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .roi-label {
+    font-size: 12px;
+    color: var(--green);
+    opacity: 0.7;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 48px;
+  }
+
+  /* DM SCRIPT SECTION */
+  .scripts-bg {
+    background: var(--cream);
+    padding: 80px 0;
+  }
+
+  .chat-window {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    max-width: 480px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  .chat-header {
+    background: #075e54;
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #128c7e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .chat-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .chat-status {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 1px;
+  }
+
+  .chat-body {
+    padding: 16px;
+    background: #e5ddd5;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bubble {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  .bubble-out {
+    background: #dcf8c6;
+    align-self: flex-end;
+    border-radius: 8px 8px 2px 8px;
+    color: #111;
+  }
+
+  .bubble-in {
+    background: white;
+    align-self: flex-start;
+    border-radius: 8px 8px 8px 2px;
+    color: #111;
+  }
+
+  .bubble-time {
+    font-size: 10px;
+    color: #999;
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  /* SCRIPT BLOCKS */
+  .script-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .script-block-header {
+    background: var(--ink);
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .script-block-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .script-badge {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .badge-step { background: var(--orange); color: white; }
+  .badge-tip { background: #1a4a1a; color: #6fc86f; }
+  .badge-close { background: #1a1a4a; color: #6f9fff; }
+
+  .script-block-body {
+    padding: 20px 24px;
+  }
+
+  .script-message {
+    background: #f5f5f5;
+    border-left: 3px solid var(--orange);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #222;
+    margin-bottom: 12px;
+    white-space: pre-line;
+  }
+
+  .script-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .script-note strong {
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  /* CALL SCRIPT */
+  .call-section {
+    background: var(--ink);
+    color: white;
+    padding: 80px 0;
+  }
+
+  .call-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .call-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .call-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .call-card-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: #222;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .call-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--orange-light);
+    margin-bottom: 12px;
+  }
+
+  .call-question {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .call-why {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .call-followup {
+    background: #1a1a1a;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.6;
+    border-left: 2px solid var(--orange);
+  }
+
+  /* OBJECTION SECTION */
+  .obj-item {
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .obj-q {
+    background: #111;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ccc;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .obj-q::before {
+    content: '?';
+    width: 22px;
+    height: 22px;
+    background: #2a1a1a;
+    color: var(--orange-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .obj-a {
+    background: #0a0a0a;
+    padding: 16px 20px 16px 52px;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.7;
+  }
+
+  .obj-a strong {
+    color: var(--orange-light);
+  }
+
+  /* CLOSING BANNER */
+  .close-banner {
+    background: var(--orange);
+    color: white;
+    text-align: center;
+    padding: 64px 48px;
+  }
+
+  .close-banner h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    line-height: 1.05;
+  }
+
+  .close-banner p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .close-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: var(--orange);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .close-btn:hover {
+    background: var(--ink);
+    color: white;
+  }
+
+  /* TABS */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .tab-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .tab-btn.active {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: #555;
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-family: 'Syne', sans-serif;
+  }
+
+  footer span { color: var(--orange); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .section { padding: 48px 20px; }
+    .pain-strip { padding: 40px 20px; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .package-body { grid-template-columns: 1fr; }
+    .roi-grid { grid-template-columns: 1fr; text-align: left; }
+    .call-grid { grid-template-columns: 1fr; }
+    .package-header { flex-direction: column; gap: 16px; }
+    .package-price { text-align: left; }
+    .divider { margin: 0 20px; }
+    .call-inner { padding: 0 20px; }
+    .scripts-bg .section { padding: 48px 20px; }
+  }
+</style>
 </head>
 <body>
 
-<h1>InstaLead Systems</h1>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>AI Lead Generation</span><span class="dot">◆</span>
+    <span>WhatsApp Automation</span><span class="dot">◆</span>
+    <span>Smart Follow-Ups</span><span class="dot">◆</span>
+    <span>Instagram Scraping</span><span class="dot">◆</span>
+    <span>n8n Workflows</span><span class="dot">◆</span>
+    <span>Business Growth</span><span class="dot">◆</span>
+    <span>AI Lead Generation</span><span class="dot">◆</span>
+    <span>WhatsApp Automation</span><span class="dot">◆</span>
+    <span>Smart Follow-Ups</span><span class="dot">◆</span>
+    <span>Instagram Scraping</span><span class="dot">◆</span>
+    <span>n8n Workflows</span><span class="dot">◆</span>
+    <span>Business Growth</span><span class="dot">◆</span>
+  </div>
+</div>
 
-<ul>
-<li><a href="/premium">Premium</a></li>
-<li><a href="/ai-growth-system">AI Growth System</a></li>
-<li><a href="/add-ons">Add Ons</a></li>
-</ul>
+<!-- NAV -->
+<nav>
+  <div class="logo">Insta<span>Lead</span> Systems</div>
+  <div class="nav-tag">@instaleads.india</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Now onboarding Indian businesses</div>
+  <h1 class="hero-title">Your business <em>leaks</em> money every day without an AI lead system.</h1>
+  <p class="hero-sub">Coaches, local businesses & ecom brands — we build the AI system that finds your ideal customers, follows up automatically, and books them. While you sleep.</p>
+  <button class="hero-cta" onclick="document.getElementById('scripts').scrollIntoView()">
+    See How We Close Clients <span class="hero-cta-arrow">→</span>
+  </button>
+</div>
+
+<!-- PAIN STRIP -->
+<div class="pain-strip">
+  <div class="pain-strip-inner">
+    <div class="pain-label">// The problem we solve</div>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-icon">📉</div>
+        <div class="pain-title">Leads fall through the cracks</div>
+        <div class="pain-desc">Someone DMs you, you reply 6 hours later — they've already gone to a competitor. No system = lost money.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">😤</div>
+        <div class="pain-title">Follow-ups are manual & painful</div>
+        <div class="pain-desc">You're manually following up on WhatsApp with 20 people. Half get forgotten. You're running a business, not a call center.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🔍</div>
+        <div class="pain-title">No consistent lead source</div>
+        <div class="pain-desc">Word of mouth is unpredictable. You need a system pulling in fresh, qualified leads every single day — automatically.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGE SECTION -->
+<div class="section">
+  <div class="section-label">// What you get</div>
+  <h2 class="section-title">The <em>complete</em> AI Growth System — ₹1,20,000</h2>
+
+  <div class="package-card">
+    <div class="package-header">
+      <div>
+        <div class="package-name">AI Lead & Growth System</div>
+        <div class="package-tagline">Built for Indian coaches, local businesses & ecom brands</div>
+      </div>
+      <div class="package-price">
+        <div class="price-num">₹1,20,000</div>
+        <div class="price-period">One-time setup · Yours forever</div>
+      </div>
+    </div>
+    <div class="package-body">
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>WhatsApp AI Automation</strong> — Instant replies, lead nurturing & follow-up sequences on WhatsApp 24/7</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>Lead Generation System</strong> — AI scrapes Instagram & LinkedIn for your ideal clients daily, automatically</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>AI Follow-Up Sequences</strong> — 7-touch automated follow-up so no lead ever goes cold again</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>n8n Workflow Build</strong> — Full backend automation connecting all your tools seamlessly</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>CRM Setup</strong> — Every lead tracked, scored, and organized automatically in your dashboard</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>Discovery Call Booking</strong> — AI qualifies leads and books calls straight into your calendar</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>30-Day Support</strong> — We're with you for 30 days to ensure the system is working and optimized</span>
+      </div>
+      <div class="package-feature">
+        <span class="feature-check">◆</span>
+        <span><strong>Training & SOPs</strong> — Full video training so your team can manage the system independently</span>
+      </div>
+    </div>
+    <div class="package-footer">
+      <p>Custom built for your business. Not a template. Not a plugin. A real AI system.</p>
+    </div>
+  </div>
+
+  <div class="roi-box">
+    <div class="roi-title">💰 The ROI Math — For Indian Businesses</div>
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="roi-num">3–5×</div>
+        <div class="roi-label">More leads contacted every month vs manual outreach</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-num">₹1.2L</div>
+        <div class="roi-label">Investment pays back with just 1–2 new clients for most businesses</div>
+      </div>
+      <div class="roi-item">
+        <div class="roi-num">24/7</div>
+        <div class="roi-label">System works even when you're sleeping, on calls, or on vacation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DM SCRIPTS SECTION -->
+<div class="scripts-bg" id="scripts">
+  <div class="section">
+    <div class="section-label">// Closing playbook</div>
+    <h2 class="section-title">The DM + Call scripts that <em>close</em> ₹1.2L</h2>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('cold')">Cold DM</button>
+      <button class="tab-btn" onclick="showTab('warm')">After Reel/Ad DM</button>
+      <button class="tab-btn" onclick="showTab('followup')">Follow-Up DM</button>
+    </div>
+
+    <!-- COLD DM -->
+    <div class="tab-content active" id="tab-cold">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+        <div>
+          <div class="script-block">
+            <div class="script-block-header">
+              <span class="script-block-title">MESSAGE 1 — The Opener</span>
+              <span class="script-badge badge-step">DAY 1</span>
+            </div>
+            <div class="script-block-body">
+              <div class="script-message">Hey [Name] 👋
+
+Aapka [business type] dekha — genuinely impressive work.
+
+Quick question: abhi leads kaise aa rahe hain aapke paas? Mainly word of mouth ya kuch system bhi hai?</div>
+              <div class="script-note"><strong>Why this works:</strong> Compliment is specific, not generic. Question creates conversation naturally — you're not pitching yet. Never open with your offer.</div>
+            </div>
+          </div>
+
+          <div class="script-block">
+            <div class="script-block-header">
+              <span class="script-block-title">MESSAGE 2 — After They Reply</span>
+              <span class="script-badge badge-step">DAY 1</span>
+            </div>
+            <div class="script-block-body">
+              <div class="script-message">Got it — yeah most [coaches/businesses] I talk to are in the same boat.
+
+Hum ek AI system build karte hain jo automatically ideal clients find karta hai, WhatsApp pe follow-up karta hai, aur calls book karta hai — without you chasing anyone.
+
+[Business name] ke liye ek quick 15-min call pe map out kar sakte hain how it'd work — no pitch, just the plan?</div>
+              <div class="script-note"><strong>Why this works:</strong> You're mirroring their situation back to them. The offer comes naturally. "No pitch, just the plan" removes sales resistance completely.</div>
+            </div>
+          </div>
+
+          <div class="script-block">
+            <div class="script-block-header">
+              <span class="script-block-title">MESSAGE 3 — They Ask "What's the Cost?"</span>
+              <span class="script-badge badge-tip">HANDLE PRICE</span>
+            </div>
+            <div class="script-block-body">
+              <div class="script-message">Investment ₹1.2L hai — one time setup, yours forever.
+
+But honestly, cost discussion call pe zyada sense karta hai because it depends on your current setup.
+
+Ek business owner ne last month yahi lagaya aur pehle 3 hafte mein hi 8 new clients aa gaye. For most businesses it pays back in Month 1.
+
+Kab free hain 15 minutes ke liye?</div>
+              <div class="script-note"><strong>Why this works:</strong> Give the number confidently — never hide it. Anchor immediately with a result. Then redirect to booking the call, not negotiating over DM.</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="chat-window">
+            <div class="chat-header">
+              <div class="chat-avatar">👤</div>
+              <div>
+                <div class="chat-name">Rahul Fitness Coach</div>
+                <div class="chat-status">online</div>
+              </div>
+            </div>
+            <div class="chat-body">
+              <div class="bubble bubble-out">Hey Rahul 👋 Aapka fitness coaching page dekha — genuinely impressive transformations. Quick question: abhi leads kaise aa rahe hain? Word of mouth ya kuch system bhi hai?<div class="bubble-time">10:12 AM ✓✓</div></div>
+              <div class="bubble bubble-in">Mostly word of mouth bhai. Kuch Instagram se bhi aa jaate hain kabhi kabhi<div class="bubble-time">10:18 AM</div></div>
+              <div class="bubble bubble-out">Got it — same situation most coaches mein hoti hai. Hum ek AI system build karte hain jo automatically ideal clients find karta hai aur WhatsApp pe follow up karta hai. 15 min call pe map out kar sakte hain? No pitch, just the plan 🙏<div class="bubble-time">10:19 AM ✓✓</div></div>
+              <div class="bubble bubble-in">Sounds interesting bhai. Cost kya hoga?<div class="bubble-time">10:24 AM</div></div>
+              <div class="bubble bubble-out">₹1.2L one-time setup. Call pe better explain kar sakta hoon based on your setup. Ek client ne last month lagaya — 3 weeks mein 8 new clients. Kab free hain? 🙌<div class="bubble-time">10:25 AM ✓✓</div></div>
+              <div class="bubble bubble-in">Kal 5pm chal sakta hai?<div class="bubble-time">10:31 AM</div></div>
+            </div>
+          </div>
+          <div style="margin-top:16px; font-size:12px; color:var(--muted); text-align:center; font-style:italic;">Example conversation flow — 19 minutes, call booked.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WARM DM (after reel) -->
+    <div class="tab-content" id="tab-warm">
+      <div class="script-block">
+        <div class="script-block-header">
+          <span class="script-block-title">They DM "LEADS" after seeing your reel/ad</span>
+          <span class="script-badge badge-step">INSTANT REPLY</span>
+        </div>
+        <div class="script-block-body">
+          <div class="script-message">Hey [Name]! 👋 Thanks for reaching out.
+
+So here's what we do — we build a custom AI system for your business that:
+
+✅ Finds your ideal clients on Instagram/LinkedIn automatically
+✅ Sends them personalized messages
+✅ Follows up on WhatsApp without you lifting a finger
+✅ Books discovery calls into your calendar
+
+Aapka kya business hai? — so I can tell you exactly how this would work for you specifically.</div>
+          <div class="script-note"><strong>Key move:</strong> End with a question about THEM. This starts the qualification naturally. You want to understand their business before you pitch hard.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-block-header">
+          <span class="script-block-title">After they tell you their business — Qualify & Book</span>
+          <span class="script-badge badge-step">MESSAGE 2</span>
+        </div>
+        <div class="script-block-body">
+          <div class="script-message">Perfect — [business type] ke liye yeh system exactly fit hota hai.
+
+[Personalized 1 line about their specific situation]
+
+Abhi roughly kitne leads aa rahe hain per month, aur kitna close ho raha hai?
+
+[After they answer:]
+
+Okay so there's definitely a gap we can close with AI. Let's do a quick 20-min call — I'll show you exactly what the system would look like for [their business name]. When works for you this week?</div>
+          <div class="script-note"><strong>Why this works:</strong> You're diagnosing before prescribing. The "gap" framing makes them feel understood, not sold to. Booking a call now feels like the natural next step, not a sales tactic.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOLLOW UP DM -->
+    <div class="tab-content" id="tab-followup">
+      <div class="script-block">
+        <div class="script-block-header">
+          <span class="script-block-title">Day 3 Follow-Up — No Reply Yet</span>
+          <span class="script-badge badge-step">DAY 3</span>
+        </div>
+        <div class="script-block-body">
+          <div class="script-message">Hey [Name] — just wanted to bump this up 👆
+
+Ek quick thought: agar aapka business abhi manually leads chase kar raha hai, you're losing money every day the system isn't running.
+
+This week hum 2 spots bache hain. Interested hain toh bata dein — nahi toh no worries at all 🙏</div>
+          <div class="script-note"><strong>Why this works:</strong> Scarcity is real (you only have so much time). The loss-framing ("losing money every day") is more powerful than gain-framing. End gives them an easy out — which paradoxically makes them more likely to reply.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-block-header">
+          <span class="script-block-title">Day 7 Final Follow-Up — The Last Touch</span>
+          <span class="script-badge badge-step">DAY 7</span>
+        </div>
+        <div class="script-block-body">
+          <div class="script-message">Hey [Name] — last message from my side 👋
+
+Ek [coach/business owner] ka result share karna tha jo humne recently set up kiya:
+→ [Result: e.g., 12 calls booked in week 1, 4 clients closed in month 1]
+
+Aapke liye bhi same possible hai.
+
+Agar aage discuss karna ho toh reply kar dein — genuinely help karna chahta hoon. If not, best of luck to you! 🙏</div>
+          <div class="script-note"><strong>Why this works:</strong> Social proof hits hard at the end. "Last message" creates finality — FOMO kicks in. Generous, non-pushy close leaves them with a positive impression whether they convert now or later.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALL CLOSING SCRIPT -->
+<div class="call-section">
+  <div class="call-inner">
+    <div class="section-label" style="color:var(--orange);">// Discovery call framework</div>
+    <h2 class="section-title" style="color:white;">The 4-question call that <em>closes</em> ₹1.2L</h2>
+    <p style="color:#666; font-size:14px; margin-top:-32px; margin-bottom:0;">20-minute call. You talk 30%, they talk 70%. Listen more than you speak.</p>
+
+    <div class="call-grid">
+      <div class="call-card">
+        <div class="call-card-num">01</div>
+        <div class="call-card-title">The Situation Question</div>
+        <div class="call-question">"Abhi leads kahan se aa rahe hain aapke — aur roughly per month kitne aa rahe hain?"</div>
+        <div class="call-why">Let them talk. You're building a picture. Note every number they give — you'll use it later.</div>
+        <div class="call-followup">Follow-up: "Aur inme se kitne actually client bante hain?" → This reveals their conversion problem, not just lead problem.</div>
+      </div>
+
+      <div class="call-card">
+        <div class="call-card-num">02</div>
+        <div class="call-card-title">The Desire Question</div>
+        <div class="call-question">"Agar lead generation seamlessly ho jaaye — consistent, predictable — how would that change your business in the next 6 months?"</div>
+        <div class="call-why">Let them paint their own dream. They're literally selling themselves on why they need your solution.</div>
+        <div class="call-followup">Follow-up: "Financially, roughly kitna difference hoga?" → Get a number. This anchors your ₹1.2L price against a much bigger number.</div>
+      </div>
+
+      <div class="call-card">
+        <div class="call-card-num">03</div>
+        <div class="call-card-title">The Obstacle Question</div>
+        <div class="call-question">"Toh yeh sab jaante hue — abhi tak kyun nahi hua? Kya roka hai?"</div>
+        <div class="call-why">This surfaces their real objections BEFORE you pitch. You can address each one proactively in your presentation.</div>
+        <div class="call-followup">Listen for: "time nahi hai", "costly lagta hai", "pehle kisi ne kiya tha kaam nahi aaya" — each has a specific reframe ready.</div>
+      </div>
+
+      <div class="call-card">
+        <div class="call-card-num">04</div>
+        <div class="call-card-title">The Close Question</div>
+        <div class="call-question">"Toh agar main aaj aapko exactly dikhata hoon kaise yeh system work karega [their business] ke liye — aur numbers make sense karein — toh kya aap aage badhne ke liye ready hain?"</div>
+        <div class="call-why">This is a commitment question BEFORE you show price. If they say yes, closing is natural. If no — you find out why now, not after your pitch.</div>
+        <div class="call-followup">After this → present the system, show the ROI math, then: "Investment ₹1.2L hai. Advance 50% aaj — hum kal start karte hain." Simple. Direct. Confident.</div>
+      </div>
+    </div>
+
+    <!-- OBJECTIONS -->
+    <div style="margin-top:48px;">
+      <div class="section-label" style="color:var(--orange);">// Handle every objection</div>
+      <h3 style="font-family:'Syne',sans-serif; font-size:24px; font-weight:800; color:white; margin-bottom:24px; letter-spacing:-0.5px;">Common objections & exact rebuttals</h3>
+
+      <div class="obj-item">
+        <div class="obj-q">"₹1.2L bohot zyada hai bhai"</div>
+        <div class="obj-a">Samajh sakta hoon. Let me flip it — abhi aap per month roughly kitna earn kar rahe hain? <strong>[They answer].</strong> Agar yeh system sirf 1-2 extra clients laaye per month, yeh investment kitne time mein recover hogi? Usually 30-45 days. Uske baad pure profit. Costly nahi — it's the cheapest thing you can do for your business.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">"Pehle kisi agency ne same promise kiya tha — kaam nahi aaya"</div>
+        <div class="obj-a">Bilkul valid — aur yahi wajah hai ki hum pehle <strong>exactly dikhate hain kya banenge</strong> before you pay a rupee. Aur hum ek template nahi de rahe — yeh custom AI system hai sirf aapke business ke liye. Plus 30-day support — agar results nahi aaye toh hum fix karte hain. Koi disappear nahi hoga.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">"Mujhe thoda time chahiye sochne ke liye"</div>
+        <div class="obj-a">Of course — yeh decision sochne wala hai. <strong>Ek kaam karein</strong> — aaj 50% advance karte hain, hum immediately start karte hain. Agar 7 days mein aapko lagta hai yeh aapke liye nahi hai — full refund. Zero risk. Sochne ka time aapko milega AND system bhi chalu ho jaayega.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">"Mere paas AI ke liye time/knowledge nahi hai"</div>
+        <div class="obj-a">Yahi toh hum karte hain — <strong>sab kuch hum set up karte hain</strong>. Aapko sirf calls attend karne hain. System ke baare mein aapko kuch nahi jaanna — hum aapka IT team hain. Video training bhi denge aur 30 din support — aaram se manage kar paenge.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING BANNER -->
+<div class="close-banner">
+  <h2>Ready to start closing?<br>Yeh script kaam karti hai.</h2>
+  <p>Use these DMs today. Book calls this week. Close ₹1.2L by Day 7. The system is right here — abhi shuru karo.</p>
+  <a class="close-btn" href="https://instagram.com/instaleads.india" target="_blank">→ @instaleads.india</a>
+</div>
+
+<footer>
+  Built for <span>Insta Lead Systems</span> · @instaleads.india · India's AI Lead Generation Partner
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
