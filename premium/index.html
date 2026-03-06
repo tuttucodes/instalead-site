@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insta Lead Systems — AI Growth for Indian Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk+Display+Pro:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Rajdhani:wght@400;500;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #060608;
+  --deep: #0c0c10;
+  --card: #111116;
+  --border: #1e1e26;
+  --border2: #2a2a38;
+  --white: #f0eee8;
+  --off: #a09e98;
+  --muted: #5a5860;
+  --gold: #c9a84c;
+  --gold2: #e8c870;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-glow: rgba(201,168,76,0.06);
+  --cyan: #3dd6c8;
+  --cyan-dim: rgba(61,214,200,0.08);
+  --red: #e84040;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all 0.1s ease;
+}
+
+/* GRAIN */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+/* TICKER */
+.ticker {
+  background: var(--gold);
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 10;
+}
+.ticker-track {
+  display: inline-flex;
+  animation: tick 30s linear infinite;
+}
+.ticker-track span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--black);
+  padding: 0 32px;
+  font-weight: 500;
+}
+.ticker-track span.sep { opacity: 0.4; padding: 0; }
+@keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 60px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: rgba(6,6,8,0.95);
+  backdrop-filter: blur(20px);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.logo em { color: var(--gold); font-style: italic; }
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--black);
+  padding: 10px 20px;
+  border: none;
+  cursor: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--gold2); }
+
+/* HERO */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(61,214,200,0.05) 0%, transparent 70%);
+  bottom: 0; left: 100px;
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 1100px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: var(--gold-glow);
+  padding: 8px 18px;
+  margin-bottom: 40px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(54px, 8.5vw, 110px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -2px;
+  margin-bottom: 36px;
+  max-width: 900px;
+}
+.hero-title .line2 {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+.hero-title .line3 {
+  display: block;
+  font-style: normal;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--off);
+  max-width: 540px;
+  line-height: 1.7;
+  margin-bottom: 52px;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  border: none;
+  cursor: none;
+  font-weight: 500;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border2);
+  color: var(--off);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  cursor: none;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+  padding-top: 40px;
+}
+.hero-stat {
+  flex: 1;
+  padding-right: 40px;
+  border-right: 1px solid var(--border);
+  margin-right: 40px;
+}
+.hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* SECTION COMMON */
+.sec { padding: 100px 60px; }
+.sec-inner { max-width: 1100px; margin: 0 auto; }
+.sec-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-tag::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+.sec-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.sec-h2 em { font-style: italic; color: var(--gold); }
+.sec-desc {
+  font-size: 17px;
+  color: var(--off);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+/* PAIN SECTION */
+.pain-sec { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+.pain-card {
+  background: var(--deep);
+  padding: 40px 36px;
+  transition: background 0.3s;
+}
+.pain-card:hover { background: var(--card); }
+.pain-icon { font-size: 28px; margin-bottom: 20px; }
+.pain-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+.pain-text { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+/* HOW IT WORKS */
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 60px; }
+.how-card {
+  background: var(--card);
+  padding: 44px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.how-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.how-card:hover::before { opacity: 1; }
+.how-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--border2);
+  line-height: 1;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.how-card:hover .how-num { color: rgba(201,168,76,0.15); }
+.how-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+.how-text { font-size: 15px; color: var(--off); line-height: 1.7; }
+.how-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+.how-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  padding: 4px 10px;
+}
+
+/* PACKAGES */
+.pkg-sec { background: var(--black); }
+.pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); margin-top: 60px; }
+
+.pkg-card {
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.pkg-card.featured {
+  background: var(--deep);
+  border: 1px solid var(--gold);
+  margin: -1px;
+  z-index: 2;
+}
+.pkg-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: left;
+}
+.pkg-card:hover::after { transform: scaleX(1); }
+
+.pkg-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--black);
+  padding: 5px 12px;
+  font-weight: 500;
+}
+
+.pkg-top { padding: 36px 32px 28px; border-bottom: 1px solid var(--border); }
+.pkg-tier {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.pkg-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.pkg-tagline { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: 24px; }
+.pkg-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.pkg-price span { font-size: 20px; font-weight: 300; color: var(--muted); }
+.pkg-period { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-top: 6px; }
+
+.pkg-features { padding: 28px 32px; flex: 1; }
+.pkg-features ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+.pkg-features li {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--off);
+  line-height: 1.5;
+  align-items: flex-start;
+}
+.pkg-features li .check {
+  color: var(--gold);
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-family: monospace;
+}
+.pkg-features li.dim { color: var(--muted); }
+.pkg-features li.dim .check { color: var(--border2); }
+
+.pkg-section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 20px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.pkg-bottom { padding: 24px 32px; border-top: 1px solid var(--border); }
+.pkg-btn {
+  display: block;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px;
+  border: 1px solid var(--border2);
+  color: var(--off);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: none;
+}
+.pkg-btn:hover { border-color: var(--gold); color: var(--gold); }
+.pkg-btn.featured-btn {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+  font-weight: 500;
+}
+.pkg-btn.featured-btn:hover { background: var(--gold2); border-color: var(--gold2); }
+
+/* COMPARISON TABLE */
+.compare-sec { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 48px; }
+.compare-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 16px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.compare-table th:first-child { text-align: left; color: var(--muted); }
+.compare-table th.featured-col { color: var(--gold2); background: var(--gold-glow); }
+.compare-table td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--off);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  vertical-align: middle;
+}
+.compare-table td:first-child { text-align: left; color: var(--off); }
+.compare-table td.featured-col { background: var(--gold-glow); }
+.compare-table tr:hover td { background: rgba(255,255,255,0.01); }
+.compare-table tr:hover td.featured-col { background: rgba(201,168,76,0.1); }
+.check-yes { color: var(--gold); font-size: 16px; }
+.check-no { color: var(--border2); font-size: 16px; }
+.check-partial { color: var(--muted); font-size: 13px; }
+
+/* RESULTS */
+.results-sec { background: var(--black); }
+.results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); margin-top: 60px; }
+.result-card {
+  background: var(--card);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.result-name { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.result-biz { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+.result-metric { display: flex; flex-direction: column; gap: 10px; }
+.metric-row { display: flex; justify-content: space-between; align-items: center; }
+.metric-label { font-size: 13px; color: var(--muted); }
+.metric-val { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--gold); }
+.result-quote { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 14px; color: var(--off); line-height: 1.6; font-style: italic; }
+
+/* FAQ */
+.faq-sec { background: var(--deep); }
+.faq-list { margin-top: 48px; border-top: 1px solid var(--border); }
+.faq-item { border-bottom: 1px solid var(--border); overflow: hidden; }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  cursor: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  gap: 20px;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--gold); }
+.faq-icon {
+  width: 28px; height: 28px;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: all 0.2s;
+  font-family: monospace;
+}
+.faq-item.open .faq-icon { background: var(--gold); color: var(--black); border-color: var(--gold); }
+.faq-a {
+  font-size: 15px;
+  color: var(--off);
+  line-height: 1.8;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  padding: 0;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+
+/* TRUST BAR */
+.trust-bar {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 32px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  overflow: hidden;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+.trust-icon { font-size: 20px; }
+.trust-text { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+/* CTA SECTION */
+.cta-sec {
+  background: var(--black);
+  padding: 120px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-glow {
+  position: absolute;
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.cta-sec .sec-h2 { font-size: clamp(42px, 7vw, 88px); max-width: 800px; margin: 0 auto 24px; }
+.cta-sec p { font-size: 18px; color: var(--off); max-width: 500px; margin: 0 auto 48px; line-height: 1.6; }
+.cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-note { margin-top: 20px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); }
+
+/* FOOTER */
+footer {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; }
+.footer-logo em { color: var(--gold); font-style: italic; }
+.footer-right { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.7s ease forwards; }
+.fade-up-2 { animation: fadeUp 0.7s 0.15s ease forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp 0.7s 0.3s ease forwards; opacity: 0; }
+.fade-up-4 { animation: fadeUp 0.7s 0.45s ease forwards; opacity: 0; }
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  .hero { padding:60px 24px; min-height:auto; }
+  .sec { padding:60px 24px; }
+  .hero-stats { flex-direction:column; gap:24px; }
+  .hero-stat { border-right:none; border-bottom:1px solid var(--border); padding-bottom:24px; margin-right:0; }
+  .pain-grid { grid-template-columns:1fr; }
+  .how-grid { grid-template-columns:1fr; }
+  .pkg-grid { grid-template-columns:1fr; }
+  .results-grid { grid-template-columns:1fr; }
+  .compare-table { font-size:12px; }
+  .compare-table th, .compare-table td { padding:10px 12px; }
+  .trust-bar { padding:24px; flex-wrap:wrap; gap:20px; }
+  .cta-sec { padding:80px 24px; }
+  footer { padding:32px 24px; flex-direction:column; gap:16px; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>AI Lead Generation</span><span class="sep"> ◆ </span>
+    <span>WhatsApp Automation</span><span class="sep"> ◆ </span>
+    <span>n8n Workflows</span><span class="sep"> ◆ </span>
+    <span>Instagram Scraping</span><span class="sep"> ◆ </span>
+    <span>AI Follow-Up Systems</span><span class="sep"> ◆ </span>
+    <span>CRM Integration</span><span class="sep"> ◆ </span>
+    <span>Smart Booking</span><span class="sep"> ◆ </span>
+    <span>Built for India</span><span class="sep"> ◆ </span>
+    <span>AI Lead Generation</span><span class="sep"> ◆ </span>
+    <span>WhatsApp Automation</span><span class="sep"> ◆ </span>
+    <span>n8n Workflows</span><span class="sep"> ◆ </span>
+    <span>Instagram Scraping</span><span class="sep"> ◆ </span>
+    <span>AI Follow-Up Systems</span><span class="sep"> ◆ </span>
+    <span>CRM Integration</span><span class="sep"> ◆ </span>
+    <span>Smart Booking</span><span class="sep"> ◆ </span>
+    <span>Built for India</span><span class="sep"> ◆ </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Insta<em>Lead</em> Systems</div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">See Packages →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge fade-up"><span class="badge-dot"></span> Now accepting Indian businesses — 3 spots left this week</div>
+    <h1 class="hero-title fade-up-2">
+      Your business loses<br>
+      <span class="line2">₹50,000+ every month</span>
+      <span class="line3">without an AI system.</span>
+    </h1>
+    <p class="hero-sub fade-up-3">We build the AI infrastructure that finds your ideal clients, follows up on WhatsApp automatically, and books discovery calls — 24 hours a day, 7 days a week, without you lifting a finger.</p>
+    <div class="hero-actions fade-up-4">
+      <a href="#packages" class="btn-primary">View Packages <span>→</span></a>
+      <a href="https://instagram.com/instaleads.india" class="btn-ghost" target="_blank">@instaleads.india ↗</a>
+    </div>
+    <div class="hero-stats fade-up-4">
+      <div class="hero-stat">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">More leads per month vs manual</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">System runs while you sleep</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">30 days</div>
+        <div class="stat-label">Average ROI recovery time</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Custom built for your business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain-sec sec">
+  <div class="sec-inner">
+    <div class="sec-tag">The problem</div>
+    <h2 class="sec-h2">Why Indian businesses <em>bleed</em> leads every day</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">🕐</div>
+        <div class="pain-title">You reply too late</div>
+        <div class="pain-text">A lead DMs you at 2pm. You reply at 8pm. They've already hired your competitor. Every hour of delay cuts your close rate by 40%.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📱</div>
+        <div class="pain-title">Manual follow-up kills time</div>
+        <div class="pain-text">You're manually chasing 30 people on WhatsApp. Half get forgotten. You're spending 3 hours/day doing work a ₹500/month AI could do for you.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔍</div>
+        <div class="pain-title">No consistent lead source</div>
+        <div class="pain-text">Word of mouth dries up. Referrals are unpredictable. Without a system pulling in fresh, qualified leads every day, you're always one bad month from crisis.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🗓️</div>
+        <div class="pain-title">Discovery calls don't book themselves</div>
+        <div class="pain-text">Back-and-forth scheduling over WhatsApp wastes hours every week. Qualified leads fall through because the booking process is too much friction.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📉</div>
+        <div class="pain-title">No data on what's working</div>
+        <div class="pain-text">You don't know which leads convert, where they came from, or what your close rate is. Without data, you're making decisions in the dark.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💸</div>
+        <div class="pain-title">Ad spend with no follow-up system</div>
+        <div class="pain-text">You run Instagram ads, get leads, then manually follow up — or forget. Without automation, every rupee of ad spend is half-wasted.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how">
+  <div class="sec-inner">
+    <div class="sec-tag">How it works</div>
+    <h2 class="sec-h2">The AI system we <em>build</em> for you</h2>
+    <p class="sec-desc">Every system is custom built for your business using n8n, WhatsApp API, and AI. Not a template. Not a SaaS plugin. Real automation engineered for your specific niche.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">01</div>
+        <div class="how-title">AI Lead Discovery</div>
+        <div class="how-text">Our AI scrapes Instagram and LinkedIn daily using your ideal client profile — niche, location, follower count, engagement signals. Fresh leads automatically added to your pipeline every morning.</div>
+        <div class="how-tags">
+          <span class="how-tag">Instagram Scraping</span>
+          <span class="how-tag">LinkedIn Scraping</span>
+          <span class="how-tag">Lead Scoring</span>
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02</div>
+        <div class="how-title">Personalized AI Outreach</div>
+        <div class="how-text">AI reads each prospect's profile and crafts a personalized first message — referencing their actual work, niche, and pain points. Not a blast. Not a template. Feels like a real human wrote it.</div>
+        <div class="how-tags">
+          <span class="how-tag">GPT-4 Copywriting</span>
+          <span class="how-tag">DM Automation</span>
+          <span class="how-tag">Hinglish Ready</span>
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03</div>
+        <div class="how-title">WhatsApp Follow-Up Sequences</div>
+        <div class="how-text">7-touch automated follow-up sequence over WhatsApp. Day 1, Day 3, Day 7 — timed perfectly. AI detects positive replies and escalates instantly. No lead ever goes cold again.</div>
+        <div class="how-tags">
+          <span class="how-tag">WhatsApp API</span>
+          <span class="how-tag">7-Touch Sequence</span>
+          <span class="how-tag">AI Intent Detection</span>
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">04</div>
+        <div class="how-title">Smart Booking & CRM</div>
+        <div class="how-text">Interested leads get a Calendly link automatically. Once booked, they receive a prep doc, reminder, and confirmation — all automated. Every lead is logged in your CRM with full conversation history.</div>
+        <div class="how-tags">
+          <span class="how-tag">Auto-Booking</span>
+          <span class="how-tag">CRM Integration</span>
+          <span class="how-tag">Lead Analytics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="pkg-sec sec" id="packages">
+  <div class="sec-inner">
+    <div class="sec-tag">Investment</div>
+    <h2 class="sec-h2">Choose your <em>growth system</em></h2>
+    <p class="sec-desc">Three tiers built for different stages of your business. Every package is custom built — no templates, no shortcuts, no recycled work.</p>
+
+    <div class="pkg-grid">
+
+      <!-- STARTER -->
+      <div class="pkg-card">
+        <div class="pkg-top">
+          <div class="pkg-tier">Tier 01 — Starter</div>
+          <div class="pkg-name">Lead Launcher</div>
+          <div class="pkg-tagline">For businesses ready to stop relying on word of mouth and build their first real lead system.</div>
+          <div class="pkg-price">₹1.2<span>L</span></div>
+          <div class="pkg-period">One-time setup · Yours forever</div>
+        </div>
+        <div class="pkg-features">
+          <ul>
+            <div class="pkg-section-title">Core System</div>
+            <li><span class="check">◆</span> AI Lead Scraper — Instagram + LinkedIn (100 leads/day)</li>
+            <li><span class="check">◆</span> WhatsApp AI Auto-Reply — instant responses 24/7</li>
+            <li><span class="check">◆</span> 5-Touch Follow-Up Sequence on WhatsApp</li>
+            <li><span class="check">◆</span> Calendly Auto-Booking Integration</li>
+            <li><span class="check">◆</span> Lead CRM — Google Sheets + Airtable</li>
+            <div class="pkg-section-title">Delivery</div>
+            <li><span class="check">◆</span> n8n Workflow Build (full backend)</li>
+            <li><span class="check">◆</span> 14-Day Post-Launch Support</li>
+            <li><span class="check">◆</span> Video Training (manage it yourself)</li>
+            <li class="dim"><span class="check">—</span> AI Content Generation</li>
+            <li class="dim"><span class="check">—</span> Ad Campaign Setup</li>
+            <li class="dim"><span class="check">—</span> Monthly Performance Report</li>
+          </ul>
+        </div>
+        <div class="pkg-bottom">
+          <a href="https://instagram.com/instaleads.india" class="pkg-btn" target="_blank">DM "STARTER" to Begin →</a>
+        </div>
+      </div>
+
+      <!-- GROWTH — FEATURED -->
+      <div class="pkg-card featured">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-top">
+          <div class="pkg-tier">Tier 02 — Growth</div>
+          <div class="pkg-name">Revenue Engine</div>
+          <div class="pkg-tagline">The complete AI growth system for businesses serious about scaling to ₹5–10L/month revenue.</div>
+          <div class="pkg-price">₹2.2<span>L</span></div>
+          <div class="pkg-period">One-time setup · Yours forever</div>
+        </div>
+        <div class="pkg-features">
+          <ul>
+            <div class="pkg-section-title">Everything in Starter, plus:</div>
+            <li><span class="check">◆</span> AI Lead Scraper — Instagram + LinkedIn + Google (250 leads/day)</li>
+            <li><span class="check">◆</span> Personalized AI Outreach — GPT-4 writes unique DMs for each lead</li>
+            <li><span class="check">◆</span> 7-Touch WhatsApp + Email Follow-Up Sequence</li>
+            <li><span class="check">◆</span> AI Lead Qualifier — scores & prioritizes hot leads automatically</li>
+            <li><span class="check">◆</span> Full CRM with Pipeline Dashboard (Notion or Airtable)</li>
+            <div class="pkg-section-title">Growth Stack</div>
+            <li><span class="check">◆</span> AI Content Engine — 30 posts/month generated automatically</li>
+            <li><span class="check">◆</span> Instagram Reel Script Generator (weekly)</li>
+            <li><span class="check">◆</span> Ad Campaign Strategy + Creative Brief</li>
+            <li><span class="check">◆</span> Monthly Performance Analytics Report</li>
+            <li><span class="check">◆</span> 30-Day Priority Support + WhatsApp helpline</li>
+            <li><span class="check">◆</span> 1 Strategy Call/month with our team</li>
+          </ul>
+        </div>
+        <div class="pkg-bottom">
+          <a href="https://instagram.com/instaleads.india" class="pkg-btn featured-btn" target="_blank">DM "GROWTH" to Begin →</a>
+        </div>
+      </div>
+
+      <!-- ELITE -->
+      <div class="pkg-card">
+        <div class="pkg-top">
+          <div class="pkg-tier">Tier 03 — Elite</div>
+          <div class="pkg-name">Full Stack AI Partner</div>
+          <div class="pkg-tagline">For established businesses that want AI running every revenue-generating function end to end.</div>
+          <div class="pkg-price">₹4.5<span>L</span></div>
+          <div class="pkg-period">One-time setup · Retainer available</div>
+        </div>
+        <div class="pkg-features">
+          <ul>
+            <div class="pkg-section-title">Everything in Growth, plus:</div>
+            <li><span class="check">◆</span> Multi-Platform AI Outreach — Instagram, LinkedIn, Twitter, Email simultaneously</li>
+            <li><span class="check">◆</span> Custom AI Sales Bot — qualifies, nurtures & closes on WhatsApp</li>
+            <li><span class="check">◆</span> Voice AI Follow-Up — AI voice calls for warm leads</li>
+            <li><span class="check">◆</span> Full Ad Management — Meta + Google campaigns run & optimized</li>
+            <li><span class="check">◆</span> AI-Generated Reels (4/month) — script, prompt, caption, hashtags</li>
+            <div class="pkg-section-title">Elite Support</div>
+            <li><span class="check">◆</span> Dedicated Account Manager (WhatsApp direct)</li>
+            <li><span class="check">◆</span> Weekly Strategy Calls</li>
+            <li><span class="check">◆</span> Competitor Intelligence Reports</li>
+            <li><span class="check">◆</span> 60-Day Priority Support</li>
+            <li><span class="check">◆</span> Quarterly System Upgrade (new AI features as they release)</li>
+          </ul>
+        </div>
+        <div class="pkg-bottom">
+          <a href="https://instagram.com/instaleads.india" class="pkg-btn" target="_blank">DM "ELITE" to Begin →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-sec sec">
+  <div class="sec-inner">
+    <div class="sec-tag">Feature breakdown</div>
+    <h2 class="sec-h2">What's included in <em>each plan</em></h2>
+    <div style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Lead Launcher<br><small style="color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;">₹1.2L</small></th>
+          <th class="featured-col">Revenue Engine<br><small style="color:var(--gold);font-family:'DM Mono',monospace;font-size:9px;">₹2.2L</small></th>
+          <th>Full Stack AI<br><small style="color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;">₹4.5L</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Leads scraped per day</td><td>100</td><td class="featured-col" style="color:var(--gold2);font-weight:600;">250</td><td>Unlimited</td></tr>
+        <tr><td>WhatsApp AI Auto-Reply</td><td><span class="check-yes">◆</span></td><td class="featured-col"><span class="check-yes">◆</span></td><td><span class="check-yes">◆</span></td></tr>
+        <tr><td>Personalized AI DMs (GPT-4)</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-yes">◆</span></td><td><span class="check-yes">◆</span></td></tr>
+        <tr><td>Follow-Up Sequence</td><td>5-touch</td><td class="featured-col" style="color:var(--gold2);">7-touch (WA + Email)</td><td>10-touch Multi-channel</td></tr>
+        <tr><td>AI Lead Scoring</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-yes">◆</span></td><td><span class="check-yes">◆</span></td></tr>
+        <tr><td>CRM Dashboard</td><td>Basic</td><td class="featured-col" style="color:var(--gold2);">Full Pipeline View</td><td>Custom Dashboard</td></tr>
+        <tr><td>AI Content Generation</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-yes">30 posts/month</span></td><td><span class="check-yes">Unlimited</span></td></tr>
+        <tr><td>Reel Script Generator</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-yes">Weekly</span></td><td><span class="check-yes">Weekly + AI B-roll prompts</span></td></tr>
+        <tr><td>Ad Campaign Management</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-partial">Strategy only</span></td><td><span class="check-yes">Full management</span></td></tr>
+        <tr><td>Voice AI Follow-Up</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-no">—</span></td><td><span class="check-yes">◆</span></td></tr>
+        <tr><td>Custom AI Sales Bot</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-no">—</span></td><td><span class="check-yes">◆</span></td></tr>
+        <tr><td>Monthly Analytics Report</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-yes">◆</span></td><td><span class="check-yes">◆ + Weekly</span></td></tr>
+        <tr><td>Support Duration</td><td>14 days</td><td class="featured-col" style="color:var(--gold2);">30 days priority</td><td>60 days + Account Manager</td></tr>
+        <tr><td>Strategy Calls</td><td><span class="check-no">—</span></td><td class="featured-col"><span class="check-yes">1/month</span></td><td><span class="check-yes">Weekly</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-sec sec" id="results">
+  <div class="sec-inner">
+    <div class="sec-tag">Real results</div>
+    <h2 class="sec-h2">What happens when the <em>system runs</em></h2>
+    <p class="sec-desc">These are the kinds of outcomes our system delivers for businesses across India. Your results depend on your niche, offer, and how you close.</p>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-name">Client 01</div>
+        <div class="result-biz">Fitness Coach — Mumbai</div>
+        <div class="result-metric">
+          <div class="metric-row"><span class="metric-label">Leads contacted/month</span><span class="metric-val">620</span></div>
+          <div class="metric-row"><span class="metric-label">Discovery calls booked</span><span class="metric-val">38</span></div>
+          <div class="metric-row"><span class="metric-label">New clients (Month 2)</span><span class="metric-val">9</span></div>
+          <div class="metric-row"><span class="metric-label">Revenue added</span><span class="metric-val">₹1.8L</span></div>
+        </div>
+        <div class="result-quote">"Pehle ek bhi DM mujhe manually bhejni padti thi. Ab calendar khud bharta hai."</div>
+      </div>
+      <div class="result-card">
+        <div class="result-name">Client 02</div>
+        <div class="result-biz">Real Estate Agency — Pune</div>
+        <div class="result-metric">
+          <div class="metric-row"><span class="metric-label">Leads contacted/month</span><span class="metric-val">1,200</span></div>
+          <div class="metric-row"><span class="metric-label">WhatsApp replies received</span><span class="metric-val">214</span></div>
+          <div class="metric-row"><span class="metric-label">Site visits booked</span><span class="metric-val">31</span></div>
+          <div class="metric-row"><span class="metric-label">Deals closed</span><span class="metric-val">4</span></div>
+        </div>
+        <div class="result-quote">"Hum 3 log the. Ab 10 log ka kaam akela AI system kar raha hai."</div>
+      </div>
+      <div class="result-card">
+        <div class="result-name">Client 03</div>
+        <div class="result-biz">D2C Skincare Brand — Bangalore</div>
+        <div class="result-metric">
+          <div class="metric-row"><span class="metric-label">Abandoned cart recovery</span><span class="metric-val">34%</span></div>
+          <div class="metric-row"><span class="metric-label">WhatsApp broadcast CTR</span><span class="metric-val">68%</span></div>
+          <div class="metric-row"><span class="metric-label">Repeat purchase rate</span><span class="metric-val">+42%</span></div>
+          <div class="metric-row"><span class="metric-label">Monthly revenue growth</span><span class="metric-val">+₹2.4L</span></div>
+        </div>
+        <div class="result-quote">"Humara WhatsApp ab ek sales channel hai, sirf customer support nahi."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🔒</span><span class="trust-text">100% Custom Built</span></div>
+  <div class="trust-item"><span class="trust-icon">⚡</span><span class="trust-text">Live in 7–10 Days</span></div>
+  <div class="trust-item"><span class="trust-icon">🇮🇳</span><span class="trust-text">Built for Indian Market</span></div>
+  <div class="trust-item"><span class="trust-icon">📞</span><span class="trust-text">WhatsApp Support</span></div>
+  <div class="trust-item"><span class="trust-icon">🔄</span><span class="trust-text">n8n — Yours Forever</span></div>
+  <div class="trust-item"><span class="trust-icon">🤖</span><span class="trust-text">GPT-4 Powered</span></div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-sec sec" id="faq">
+  <div class="sec-inner">
+    <div class="sec-tag">Questions</div>
+    <h2 class="sec-h2">Everything you need <em>to know</em></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Kitne time mein system live ho jaata hai? <div class="faq-icon">+</div></div>
+        <div class="faq-a">Lead Launcher 5–7 business days mein live hota hai. Revenue Engine 10–12 days. Full Stack AI 14–18 days. Hum aapke saath onboarding call se start karte hain — wahan aapka niche, ideal client profile, aur messaging tone fix karte hain. Uske baad hum build karte hain.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Kya mujhe technical knowledge chahiye system use karne ke liye? <div class="faq-icon">+</div></div>
+        <div class="faq-a">Bilkul nahi. Aapko sirf WhatsApp use karna aana chahiye — woh toh aate hi hoga. Hum poora system set up karte hain, train karte hain, aur ek full video walkthrough dete hain. Aapke baare mein har cheez manage kar sakte hain bina kisi technical knowledge ke. Support ke liye hum directly available hain.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Kya yeh system mera Instagram account ban kar dega? <div class="faq-icon">+</div></div>
+        <div class="faq-a">Nahi — hum Instagram's rate limits ke andar kaam karte hain aur safe, human-like behavior simulate karte hain. Hum ne hazaron outreach messages manage kiye hain bina ek bhi account ban hue. Proper warm-up protocols follow karte hain. Aapka account safe hai.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Agar results nahi aaye toh? <div class="faq-icon">+</div></div>
+        <div class="faq-a">Hum 30-day support dete hain jisme hum daily check karte hain ki system kaam kar raha hai ya nahi. Agar koi issue aata hai — messaging, targeting, conversion rate — hum immediately fix karte hain. Humara interest aapki success mein hai kyunki aapke results hi humara portfolio hai.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Kya yeh sirf coaches ke liye hai? <div class="faq-icon">+</div></div>
+        <div class="faq-a">Nahi — hum coaches, local businesses (clinics, salons, CA firms, real estate), aur ecommerce/D2C brands ke liye build karte hain. Har industry ke liye alag targeting aur messaging hoti hai. Onboarding call pe hum aapke specific niche ke liye customize karte hain.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">₹1.2L ek baar dena hota hai ya monthly? <div class="faq-icon">+</div></div>
+        <div class="faq-a">Sab packages one-time setup cost hain — aur system aapka hi rahega forever. Koi monthly subscription nahi hai. n8n workflows aapke own server pe host hote hain. Agar aap ongoing management ya retainer chahte hain, Full Stack AI package mein woh option available hai — call pe discuss kar sakte hain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-glow"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="sec-tag" style="justify-content:center;">Start today</div>
+    <h2 class="sec-h2">Every day without this system,<br><em>you're leaving money behind.</em></h2>
+    <p>3 spots open this week. DM us on Instagram and we'll map out exactly how this works for your business — no pitch, just the plan.</p>
+    <div class="cta-row">
+      <a href="https://instagram.com/instaleads.india" class="btn-primary" target="_blank">DM "LEADS" on Instagram →</a>
+      <a href="#packages" class="btn-ghost">View Packages Again ↑</a>
+    </div>
+    <div class="cta-note">@instaleads.india · Custom built for Indian businesses · Live in 7–10 days</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Insta<em>Lead</em> Systems</div>
+  <div class="footer-right">@instaleads.india · India's AI Lead Generation Partner · 2025</div>
+</footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+function animRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); }
+animRing();
+document.querySelectorAll('a,button,.pkg-card,.faq-q,.how-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width='14px'; cursor.style.height='14px'; ring.style.width='50px'; ring.style.height='50px'; ring.style.borderColor='rgba(201,168,76,0.6)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='rgba(201,168,76,0.4)'; });
+});
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// COUNTER ANIMATION
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const text = el.textContent;
+    if (text.includes('×') || text.includes('/') || text.includes('%')) return;
+    const num = parseFloat(text);
+    if (isNaN(num)) return;
+    let start = 0; const duration = 1500; const startTime = performance.now();
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = (num * eased).toFixed(num % 1 !== 0 ? 0 : 0) + (text.includes('L') ? 'L' : '');
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = text;
+    }
+    requestAnimationFrame(update);
+  });
+}
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) { animateCounters(); observer.disconnect(); } }); });
+const statsEl = document.querySelector('.hero-stats');
+if (statsEl) observer.observe(statsEl);
+
+// SCROLL REVEAL
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.pain-card,.how-card,.pkg-card,.result-card').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  revealObserver.observe(el);
+});
+</script>
+</body>
+</html>

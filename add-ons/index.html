@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insta Lead Systems — Power Add-Ons</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Epilogue:wght@300;400;500;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080a;
+  --surface: #0f0f13;
+  --card: #131318;
+  --border: #1c1c24;
+  --border2: #26262f;
+  --white: #ece9e2;
+  --off: #8a8780;
+  --muted: #4a4850;
+
+  /* Each add-on has its own accent */
+  --ghost: #22d3a0;       /* Dead Lead — teal/mint */
+  --ghost-dim: rgba(34,211,160,0.07);
+  --whatsapp: #25d366;    /* WhatsApp — green */
+  --whatsapp-dim: rgba(37,211,102,0.07);
+  --noshow: #f59e0b;      /* No-Show — amber */
+  --noshow-dim: rgba(245,158,11,0.07);
+  --referral: #818cf8;    /* Referral — indigo */
+  --referral-dim: rgba(129,140,248,0.07);
+
+  --gold: #c9a84c;
+  --gold-dim: rgba(201,168,76,0.08);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Epilogue', sans-serif;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 999; opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 56px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,8,10,0.92);
+  backdrop-filter: blur(24px);
+}
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 20px; font-weight: 700; letter-spacing: 0.5px;
+}
+.logo em { font-style: italic; color: var(--gold); }
+.back-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  border: 1px solid var(--border2); padding: 9px 18px;
+  transition: all 0.2s;
+}
+.back-btn:hover { color: var(--white); border-color: var(--off); }
+
+/* HERO */
+.hero {
+  padding: 100px 56px 80px;
+  max-width: 1160px; margin: 0 auto;
+  position: relative;
+}
+.hero-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-dim), transparent); }
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(50px, 8vw, 100px);
+  font-weight: 900; line-height: 0.9;
+  letter-spacing: -3px; margin-bottom: 32px;
+}
+h1 .accent { font-style: italic; color: var(--gold); display: block; }
+h1 .light { font-weight: 300; font-style: italic; }
+
+.hero-desc {
+  font-size: 18px; color: var(--off);
+  max-width: 580px; line-height: 1.75;
+  margin-bottom: 56px; font-weight: 300;
+}
+
+/* HERO METRICS */
+.hero-metrics {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); margin-bottom: 0;
+}
+.h-metric {
+  background: var(--surface); padding: 28px 24px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.h-metric::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+}
+.h-metric:nth-child(1)::before { background: var(--ghost); }
+.h-metric:nth-child(2)::before { background: var(--whatsapp); }
+.h-metric:nth-child(3)::before { background: var(--noshow); }
+.h-metric:nth-child(4)::before { background: var(--referral); }
+.h-metric:hover { background: var(--card); }
+.metric-n {
+  font-family: 'Fraunces', serif; font-size: 44px;
+  font-weight: 900; line-height: 1; margin-bottom: 6px;
+}
+.h-metric:nth-child(1) .metric-n { color: var(--ghost); }
+.h-metric:nth-child(2) .metric-n { color: var(--whatsapp); }
+.h-metric:nth-child(3) .metric-n { color: var(--noshow); }
+.h-metric:nth-child(4) .metric-n { color: var(--referral); }
+.metric-l {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+  line-height: 1.5;
+}
+
+/* DIVIDER */
+.full-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* SECTION */
+.sec { padding: 100px 56px; max-width: 1160px; margin: 0 auto; }
+.sec-tag {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--off);
+  margin-bottom: 16px;
+}
+.sec-h2 {
+  font-family: 'Fraunces', serif; font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700; letter-spacing: -1px; line-height: 1.05;
+  margin-bottom: 56px;
+}
+.sec-h2 em { font-style: italic; color: var(--gold); }
+
+/* ============================
+   ADD-ON CARDS — MAIN LAYOUT
+   ============================ */
+.addon-block {
+  margin-bottom: 3px;
+  position: relative;
+}
+
+.addon-card {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.3s;
+  position: relative;
+}
+.addon-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.addon-card[data-accent="ghost"]::before { background: var(--ghost); }
+.addon-card[data-accent="whatsapp"]::before { background: var(--whatsapp); }
+.addon-card[data-accent="noshow"]::before { background: var(--noshow); }
+.addon-card[data-accent="referral"]::before { background: var(--referral); }
+.addon-card:hover::before { opacity: 1; }
+.addon-card[data-accent="ghost"]:hover { border-color: rgba(34,211,160,0.25); }
+.addon-card[data-accent="whatsapp"]:hover { border-color: rgba(37,211,102,0.25); }
+.addon-card[data-accent="noshow"]:hover { border-color: rgba(245,158,11,0.25); }
+.addon-card[data-accent="referral"]:hover { border-color: rgba(129,140,248,0.25); }
+
+/* LEFT — Main info */
+.addon-left {
+  padding: 52px 48px;
+  border-right: 1px solid var(--border);
+}
+
+.addon-number {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+}
+
+.addon-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+
+.addon-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.5px; margin-bottom: 6px;
+}
+.addon-card[data-accent="ghost"] .addon-name { color: var(--ghost); }
+.addon-card[data-accent="whatsapp"] .addon-name { color: var(--whatsapp); }
+.addon-card[data-accent="noshow"] .addon-name { color: var(--noshow); }
+.addon-card[data-accent="referral"] .addon-name { color: var(--referral); }
+
+.addon-subtitle {
+  font-size: 13px; color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.addon-problem {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+.problem-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.problem-text {
+  font-size: 15px; color: var(--off); line-height: 1.65; font-weight: 300;
+}
+.problem-text strong { color: var(--white); font-weight: 700; }
+
+.addon-desc {
+  font-size: 15px; color: var(--off);
+  line-height: 1.75; font-weight: 300; margin-bottom: 32px;
+}
+
+.addon-flow {
+  display: flex; flex-direction: column; gap: 2px; margin-bottom: 32px;
+}
+.flow-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+}
+.flow-step:last-child { border-bottom: none; }
+.flow-num {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 500; min-width: 28px; padding-top: 1px;
+}
+.addon-card[data-accent="ghost"] .flow-num { color: var(--ghost); }
+.addon-card[data-accent="whatsapp"] .flow-num { color: var(--whatsapp); }
+.addon-card[data-accent="noshow"] .flow-num { color: var(--noshow); }
+.addon-card[data-accent="referral"] .flow-num { color: var(--referral); }
+
+.flow-content { flex: 1; }
+.flow-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.flow-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* RIGHT — Price + features */
+.addon-right {
+  padding: 52px 40px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  background: var(--surface);
+  position: relative; overflow: hidden;
+}
+
+.addon-card[data-accent="ghost"] .addon-right { background: linear-gradient(160deg, rgba(34,211,160,0.04) 0%, var(--surface) 50%); }
+.addon-card[data-accent="whatsapp"] .addon-right { background: linear-gradient(160deg, rgba(37,211,102,0.04) 0%, var(--surface) 50%); }
+.addon-card[data-accent="noshow"] .addon-right { background: linear-gradient(160deg, rgba(245,158,11,0.04) 0%, var(--surface) 50%); }
+.addon-card[data-accent="referral"] .addon-right { background: linear-gradient(160deg, rgba(129,140,248,0.04) 0%, var(--surface) 50%); }
+
+.addon-price-block { margin-bottom: 36px; }
+.addon-was { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-bottom: 6px; }
+.addon-was span { text-decoration: line-through; }
+.addon-price {
+  font-family: 'Fraunces', serif;
+  font-size: 58px; font-weight: 900;
+  line-height: 1; letter-spacing: -2px; margin-bottom: 6px;
+}
+.addon-card[data-accent="ghost"] .addon-price { color: var(--ghost); }
+.addon-card[data-accent="whatsapp"] .addon-price { color: var(--whatsapp); }
+.addon-card[data-accent="noshow"] .addon-price { color: var(--noshow); }
+.addon-card[data-accent="referral"] .addon-price { color: var(--referral); }
+
+.addon-price-note {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--muted); letter-spacing: 1px; text-transform: uppercase;
+}
+
+.roi-callout {
+  border-radius: 2px; padding: 16px 18px; margin-bottom: 28px;
+}
+.addon-card[data-accent="ghost"] .roi-callout { background: var(--ghost-dim); border: 1px solid rgba(34,211,160,0.15); }
+.addon-card[data-accent="whatsapp"] .roi-callout { background: var(--whatsapp-dim); border: 1px solid rgba(37,211,102,0.15); }
+.addon-card[data-accent="noshow"] .roi-callout { background: var(--noshow-dim); border: 1px solid rgba(245,158,11,0.15); }
+.addon-card[data-accent="referral"] .roi-callout { background: var(--referral-dim); border: 1px solid rgba(129,140,248,0.15); }
+
+.roi-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.roi-text { font-size: 14px; font-weight: 700; line-height: 1.4; }
+.addon-card[data-accent="ghost"] .roi-text { color: var(--ghost); }
+.addon-card[data-accent="whatsapp"] .roi-text { color: var(--whatsapp); }
+.addon-card[data-accent="noshow"] .roi-text { color: var(--noshow); }
+.addon-card[data-accent="referral"] .roi-text { color: var(--referral); }
+
+.feat-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 32px; }
+.feat-list li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; color: var(--off); line-height: 1.5;
+}
+.feat-check { font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+.addon-card[data-accent="ghost"] .feat-check { color: var(--ghost); }
+.addon-card[data-accent="whatsapp"] .feat-check { color: var(--whatsapp); }
+.addon-card[data-accent="noshow"] .feat-check { color: var(--noshow); }
+.addon-card[data-accent="referral"] .feat-check { color: var(--referral); }
+
+.addon-cta {
+  display: block; text-align: center;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 16px; border: none; cursor: pointer;
+  font-weight: 500; text-decoration: none;
+  transition: all 0.2s;
+}
+.addon-card[data-accent="ghost"] .addon-cta { background: var(--ghost); color: #000; }
+.addon-card[data-accent="ghost"] .addon-cta:hover { background: #3fffbe; }
+.addon-card[data-accent="whatsapp"] .addon-cta { background: var(--whatsapp); color: #000; }
+.addon-card[data-accent="whatsapp"] .addon-cta:hover { background: #34eb74; }
+.addon-card[data-accent="noshow"] .addon-cta { background: var(--noshow); color: #000; }
+.addon-card[data-accent="noshow"] .addon-cta:hover { background: #fbbf24; }
+.addon-card[data-accent="referral"] .addon-cta { background: var(--referral); color: #fff; }
+.addon-card[data-accent="referral"] .addon-cta:hover { background: #a5b4fc; color: #000; }
+
+.setup-time {
+  text-align: center; margin-top: 12px;
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+}
+
+/* BUNDLE SECTION */
+.bundle-sec {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 56px;
+}
+.bundle-inner { max-width: 1160px; margin: 0 auto; }
+
+.bundle-card {
+  border: 1px solid var(--gold);
+  background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, var(--card) 50%);
+  padding: 56px;
+  position: relative; overflow: hidden;
+}
+.bundle-card::before {
+  content: 'BEST VALUE';
+  position: absolute; top: 28px; right: 28px;
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 3px; text-transform: uppercase;
+  background: var(--gold); color: var(--bg);
+  padding: 6px 14px; font-weight: 500;
+}
+
+.bundle-top {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; align-items: start; margin-bottom: 48px;
+}
+.bundle-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900; line-height: 1; letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.bundle-name em { font-style: italic; color: var(--gold); }
+.bundle-tagline { font-size: 16px; color: var(--off); line-height: 1.6; font-weight: 300; max-width: 480px; }
+
+.bundle-price-block { text-align: right; }
+.bundle-was {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  color: var(--muted); text-decoration: line-through;
+  letter-spacing: 1px; margin-bottom: 4px;
+}
+.bundle-price {
+  font-family: 'Fraunces', serif; font-size: 72px;
+  font-weight: 900; color: var(--gold); line-height: 1;
+  letter-spacing: -2px;
+}
+.bundle-save {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--whatsapp); letter-spacing: 1px; margin-top: 6px;
+}
+
+.bundle-addons {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2px; background: var(--border); margin-bottom: 40px;
+}
+.bundle-addon {
+  background: var(--card); padding: 20px;
+  position: relative; overflow: hidden;
+}
+.bundle-addon::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+}
+.bundle-addon:nth-child(1)::before { background: var(--ghost); }
+.bundle-addon:nth-child(2)::before { background: var(--whatsapp); }
+.bundle-addon:nth-child(3)::before { background: var(--noshow); }
+.bundle-addon:nth-child(4)::before { background: var(--referral); }
+
+.ba-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+.ba-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.ba-price { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+
+.bundle-extras {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-bottom: 40px;
+}
+.bundle-extra {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; color: var(--off); line-height: 1.5;
+}
+.be-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+.bundle-cta-row { display: flex; align-items: center; gap: 24px; }
+.bundle-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--gold); color: var(--bg);
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 18px 40px; border: none; cursor: pointer;
+  font-weight: 500; text-decoration: none; transition: all 0.2s;
+}
+.bundle-cta:hover { background: #e8c870; transform: translateY(-2px); }
+.bundle-note { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+/* COMPARISON VS AGENCY */
+.vs-sec { padding: 80px 56px; max-width: 1160px; margin: 0 auto; }
+.vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 48px; }
+.vs-card { background: var(--card); padding: 40px 36px; }
+.vs-card.them { background: var(--surface); }
+.vs-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.vs-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+.vs-card.them .vs-label { color: var(--muted); }
+.vs-card.us .vs-label { color: var(--gold); }
+.vs-tag {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+}
+.vs-card.them .vs-tag { background: rgba(255,255,255,0.05); color: var(--muted); }
+.vs-card.us .vs-tag { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+.vs-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.vs-list li { display: flex; gap: 12px; font-size: 14px; line-height: 1.5; align-items: flex-start; }
+.vs-card.them .vs-list li { color: var(--muted); }
+.vs-card.us .vs-list li { color: var(--off); }
+.vs-x { color: #ef4444; flex-shrink: 0; }
+.vs-check { color: var(--gold); flex-shrink: 0; }
+
+/* CTA FINAL */
+.final-cta {
+  background: var(--bg);
+  padding: 100px 56px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 350px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.final-h {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(38px, 6vw, 80px);
+  font-weight: 900; line-height: 0.95;
+  letter-spacing: -2px; margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.final-h em { font-style: italic; color: var(--gold); }
+.final-p { font-size: 17px; color: var(--off); max-width: 480px; margin: 0 auto 40px; line-height: 1.7; font-weight: 300; position: relative; z-index: 1; }
+.final-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: var(--bg);
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 18px 36px; text-decoration: none; transition: all 0.2s;
+  font-weight: 500;
+}
+.btn-gold:hover { background: #e8c870; transform: translateY(-2px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--border2); color: var(--off);
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 18px 36px; text-decoration: none; transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* FOOTER */
+footer {
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 32px 56px; display: flex; justify-content: space-between; align-items: center;
+}
+.f-logo { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; }
+.f-logo em { font-style: italic; color: var(--gold); }
+.f-right { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+.fade-u { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.2s; }
+.d3 { animation-delay: 0.3s; }
+.d4 { animation-delay: 0.4s; }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  .hero, .sec, .vs-sec, .final-cta, .bundle-sec { padding-left: 24px; padding-right: 24px; }
+  h1 { letter-spacing: -1px; }
+  .hero-metrics { grid-template-columns: 1fr 1fr; }
+  .addon-card { grid-template-columns: 1fr; }
+  .addon-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .bundle-top { grid-template-columns: 1fr; }
+  .bundle-price-block { text-align: left; }
+  .bundle-addons { grid-template-columns: 1fr 1fr; }
+  .bundle-extras { grid-template-columns: 1fr; }
+  .vs-grid { grid-template-columns: 1fr; }
+  footer { padding: 28px 24px; flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Insta<em>Lead</em> Systems</div>
+  <a href="https://instagram.com/instaleads.india" class="back-btn" target="_blank">@instaleads.india ↗</a>
+</nav>
+
+<!-- HERO -->
+<div style="border-bottom: 1px solid var(--border);">
+<div class="hero">
+  <div class="hero-label fade-u d1">Power Add-Ons — Insta Lead Systems</div>
+  <h1 class="fade-u d2">
+    Solve the problems<br>
+    <span class="accent">costing you lakhs</span>
+    <span class="light">every month.</span>
+  </h1>
+  <p class="hero-desc fade-u d3">Four precision-built AI systems targeting the exact leaks in your business — dead leads, lost WhatsApp conversations, no-show calls, and zero referral system. Add any one to your existing setup, or take all four.</p>
+
+  <div class="hero-metrics fade-u d4">
+    <div class="h-metric">
+      <div class="metric-n">5%</div>
+      <div class="metric-l">of dead leads convert with<br>one re-activation message</div>
+    </div>
+    <div class="h-metric">
+      <div class="metric-n">94%</div>
+      <div class="metric-l">WhatsApp open rate vs<br>22% for email in India</div>
+    </div>
+    <div class="h-metric">
+      <div class="metric-n">40%</div>
+      <div class="metric-l">Average no-show rate<br>for Indian discovery calls</div>
+    </div>
+    <div class="h-metric">
+      <div class="metric-n">3×</div>
+      <div class="metric-l">More clients from referral<br>system vs organic alone</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ADD-ONS -->
+<div style="padding: 80px 56px; max-width: 1160px; margin: 0 auto;">
+  <div class="sec-tag">Four add-ons. Four problems solved.</div>
+  <h2 class="sec-h2">Each one <em>pays for itself</em> in the first month.</h2>
+
+  <!-- ADD-ON 1: DEAD LEAD REACTIVATION -->
+  <div class="addon-block reveal">
+  <div class="addon-card" data-accent="ghost">
+    <div class="addon-left">
+      <div class="addon-number">Add-On 01 / 04</div>
+      <span class="addon-icon">👻</span>
+      <div class="addon-name">Ghost Lead<br>Revival System</div>
+      <div class="addon-subtitle">Dead Lead Re-Activation · AI Powered</div>
+
+      <div class="addon-problem">
+        <div class="problem-label">The Problem</div>
+        <div class="problem-text">Aapke paas <strong>200–500 old leads</strong> hain jo "baad mein dekh lenge" bol ke gaye aur kabhi wapas nahi aaye. Aap unhe bhool gaye. Woh aapko bhool gaye. <strong>That's lakhs of revenue sitting untouched in your phone.</strong></div>
+      </div>
+
+      <div class="addon-desc">We build an AI-powered re-activation campaign that reaches out to every single dead lead with a fresh angle, new social proof, and a compelling reason to reply — automatically. Most businesses recover 5–15 clients from cold leads they'd completely written off.</div>
+
+      <div class="addon-flow">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-content">
+            <div class="flow-title">Lead Import & Segmentation</div>
+            <div class="flow-desc">Upload your old lead list (WhatsApp, Excel, CRM). AI segments by last contact date, lead source, and how warm they were originally.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-content">
+            <div class="flow-title">AI Re-Activation Sequence</div>
+            <div class="flow-desc">3-message sequence over 10 days. Message 1: fresh value hook. Message 2: new social proof (recent client result). Message 3: limited-time angle. All on WhatsApp.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-content">
+            <div class="flow-title">Hot Lead Detection & Alert</div>
+            <div class="flow-desc">AI monitors replies in real time. Positive response detected → you get an instant WhatsApp notification with full lead context so you can close immediately.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-content">
+            <div class="flow-title">Auto-Booking for Interested Leads</div>
+            <div class="flow-desc">If lead shows interest, AI sends Calendly link and books the call automatically. No manual back-and-forth needed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-right">
+      <div>
+        <div class="addon-price-block">
+          <div class="addon-was">Value: <span>₹60,000</span></div>
+          <div class="addon-price">₹35K</div>
+          <div class="addon-price-note">One-time · Add to any package</div>
+        </div>
+
+        <div class="roi-callout">
+          <div class="roi-label">ROI Scenario</div>
+          <div class="roi-text">300 dead leads × 5% recovery = 15 clients.<br>At ₹10,000/client = ₹1,50,000 recovered.<br>ROI: 4× on Day 1.</div>
+        </div>
+
+        <ul class="feat-list">
+          <li><span class="feat-check">◆</span> Full lead import & AI segmentation</li>
+          <li><span class="feat-check">◆</span> 3-message WhatsApp re-activation sequence</li>
+          <li><span class="feat-check">◆</span> AI-written messages personalized per segment</li>
+          <li><span class="feat-check">◆</span> Hot lead instant WhatsApp alert to you</li>
+          <li><span class="feat-check">◆</span> Auto-booking for interested leads</li>
+          <li><span class="feat-check">◆</span> Re-activation dashboard (who replied, who booked)</li>
+          <li><span class="feat-check">◆</span> Works for any list size — 50 to 5,000 leads</li>
+          <li><span class="feat-check">◆</span> 7-day setup · Live in under a week</li>
+        </ul>
+      </div>
+
+      <div>
+        <a href="https://instagram.com/instaleads.india" class="addon-cta" target="_blank">DM "REVIVAL" to Get Started →</a>
+        <div class="setup-time">Setup: 5–7 days · WhatsApp support included</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div style="height:3px;"></div>
+
+  <!-- ADD-ON 2: WHATSAPP LEAD RECOVERY -->
+  <div class="addon-block reveal">
+  <div class="addon-card" data-accent="whatsapp">
+    <div class="addon-left">
+      <div class="addon-number">Add-On 02 / 04</div>
+      <span class="addon-icon">💬</span>
+      <div class="addon-name">WhatsApp Lead<br>Recovery Engine</div>
+      <div class="addon-subtitle">Instant Response · Smart Follow-Up · Zero Leakage</div>
+
+      <div class="addon-problem">
+        <div class="problem-label">The Problem</div>
+        <div class="problem-text">A lead messages you at <strong>2:15pm</strong>. You're in a call. You reply at <strong>7pm</strong>. They already hired someone else. In India, <strong>the first business to reply wins</strong> — and you're losing that race manually every single day.</div>
+      </div>
+
+      <div class="addon-desc">We build an AI system that responds to every WhatsApp inquiry within 60 seconds, 24/7 — with an intelligent, personalized reply that qualifies the lead, answers common questions, and books them into your calendar. You only touch the conversation when they're ready to pay.</div>
+
+      <div class="addon-flow">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-content">
+            <div class="flow-title">Instant AI Response (Under 60 Seconds)</div>
+            <div class="flow-desc">WhatsApp Business API + AI detects new inquiry and sends a warm, intelligent reply instantly. Feels human. Never feels like a bot.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-content">
+            <div class="flow-title">AI Qualification Conversation</div>
+            <div class="flow-desc">AI asks 2–3 smart questions to understand the lead's situation, budget intent, and urgency — building a complete profile before you ever see the conversation.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-content">
+            <div class="flow-title">7-Day Follow-Up Sequence</div>
+            <div class="flow-desc">If they don't respond, AI follows up automatically on Day 1, 3, and 7 with different angles. No lead is ever forgotten or left behind.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-content">
+            <div class="flow-title">Hand-Off to You When Hot</div>
+            <div class="flow-desc">When AI detects buying intent, it flags the conversation, sends you a summary, and you step in to close. Best of both worlds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-right">
+      <div>
+        <div class="addon-price-block">
+          <div class="addon-was">Value: <span>₹75,000</span></div>
+          <div class="addon-price">₹40K</div>
+          <div class="addon-price-note">One-time · Works with any WhatsApp number</div>
+        </div>
+
+        <div class="roi-callout">
+          <div class="roi-label">ROI Scenario</div>
+          <div class="roi-text">If you miss 4 leads/week due to late replies, that's 16/month. Recover 25% = 4 clients/month extra. At ₹15,000/client = ₹60,000 added revenue. Every. Single. Month.</div>
+        </div>
+
+        <ul class="feat-list">
+          <li><span class="feat-check">◆</span> Sub-60-second AI reply to every inquiry</li>
+          <li><span class="feat-check">◆</span> WhatsApp Business API setup & integration</li>
+          <li><span class="feat-check">◆</span> AI qualification conversation flow</li>
+          <li><span class="feat-check">◆</span> 7-touch follow-up sequence (WA + optional email)</li>
+          <li><span class="feat-check">◆</span> Smart hand-off notification when lead is hot</li>
+          <li><span class="feat-check">◆</span> After-hours coverage (weekends, nights, holidays)</li>
+          <li><span class="feat-check">◆</span> Lead profile summary before your call</li>
+          <li><span class="feat-check">◆</span> Works in English + Hindi + Hinglish</li>
+        </ul>
+      </div>
+
+      <div>
+        <a href="https://instagram.com/instaleads.india" class="addon-cta" target="_blank">DM "WHATSAPP" to Get Started →</a>
+        <div class="setup-time">Setup: 5–7 days · WhatsApp API included</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div style="height:3px;"></div>
+
+  <!-- ADD-ON 3: NO-SHOW REDUCER -->
+  <div class="addon-block reveal">
+  <div class="addon-card" data-accent="noshow">
+    <div class="addon-left">
+      <div class="addon-number">Add-On 03 / 04</div>
+      <span class="addon-icon">📅</span>
+      <div class="addon-name">No-Show<br>Eliminator System</div>
+      <div class="addon-subtitle">Call Confirmation · Reminders · Re-booking AI</div>
+
+      <div class="addon-problem">
+        <div class="problem-label">The Problem</div>
+        <div class="problem-text">You block out 45 minutes for a discovery call. <strong>They don't show up.</strong> No message. No reason. Just gone. Indian discovery calls average a <strong>40–60% no-show rate</strong> — meaning half your booked calls are wasted time.</div>
+      </div>
+
+      <div class="addon-desc">We build an automated call confirmation and reminder system that drops your no-show rate to under 15%. Multi-touch WhatsApp reminders, a commitment confirmation message, and an AI re-booking flow for anyone who misses — so no lead is ever permanently lost.</div>
+
+      <div class="addon-flow">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-content">
+            <div class="flow-title">Booking Confirmation + Prep Message</div>
+            <div class="flow-desc">Immediately after booking, lead receives a warm WhatsApp confirmation with what to expect on the call, how to prepare, and a calendar link. Sets tone and builds commitment.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-content">
+            <div class="flow-title">3-Step Reminder Sequence</div>
+            <div class="flow-desc">WhatsApp reminder at 24 hours before, 2 hours before, and 30 minutes before. Each one builds excitement for the call, not just a cold "reminder."</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-content">
+            <div class="flow-title">Confirm Your Spot Message</div>
+            <div class="flow-desc">12 hours before: "Just confirming you're still on for tomorrow at [time]? Reply YES to confirm your spot." Psychological commitment massively reduces ghosting.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-content">
+            <div class="flow-title">No-Show Re-Booking Flow</div>
+            <div class="flow-desc">If they miss the call, AI sends a friendly message 1 hour later offering to reschedule — automatically. Recovers 30–40% of no-shows into rebooked calls.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-right">
+      <div>
+        <div class="addon-price-block">
+          <div class="addon-was">Value: <span>₹50,000</span></div>
+          <div class="addon-price">₹28K</div>
+          <div class="addon-price-note">One-time · Connects to Calendly / any booking tool</div>
+        </div>
+
+        <div class="roi-callout">
+          <div class="roi-label">ROI Scenario</div>
+          <div class="roi-text">10 calls/month booked → 5 show up (50% rate). With this system → 8.5 show up (85%). 3.5 extra calls × 40% close × ₹20,000 = ₹28,000 extra revenue. Month 1 pays for itself.</div>
+        </div>
+
+        <ul class="feat-list">
+          <li><span class="feat-check">◆</span> Instant booking confirmation WhatsApp message</li>
+          <li><span class="feat-check">◆</span> Call prep document auto-sent to every lead</li>
+          <li><span class="feat-check">◆</span> 24hr, 2hr, 30min WhatsApp reminders</li>
+          <li><span class="feat-check">◆</span> "Confirm your spot" commitment message</li>
+          <li><span class="feat-check">◆</span> No-show re-booking flow (recovers ~35% of ghosts)</li>
+          <li><span class="feat-check">◆</span> Integrates with Calendly, Cal.com, Google Calendar</li>
+          <li><span class="feat-check">◆</span> You get notified 10 min before every confirmed call</li>
+          <li><span class="feat-check">◆</span> Monthly no-show analytics dashboard</li>
+        </ul>
+      </div>
+
+      <div>
+        <a href="https://instagram.com/instaleads.india" class="addon-cta" target="_blank">DM "NOSHOW" to Get Started →</a>
+        <div class="setup-time">Setup: 3–5 days · Fastest add-on to go live</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div style="height:3px;"></div>
+
+  <!-- ADD-ON 4: REFERRAL SYSTEM -->
+  <div class="addon-block reveal">
+  <div class="addon-card" data-accent="referral">
+    <div class="addon-left">
+      <div class="addon-number">Add-On 04 / 04</div>
+      <span class="addon-icon">🔗</span>
+      <div class="addon-name">Automated<br>Referral Machine</div>
+      <div class="addon-subtitle">Client Referral Tracking · Reward Automation · Viral Growth</div>
+
+      <div class="addon-problem">
+        <div class="problem-label">The Problem</div>
+        <div class="problem-text">Your best clients <strong>would happily refer you</strong> — but you never ask. And when you do ask, it's awkward, manual, and forgotten. <strong>Indian businesses run on trust and word of mouth</strong> — but without a system, that trust doesn't compound.</div>
+      </div>
+
+      <div class="addon-desc">We build a fully automated referral system where every client gets a unique referral link, tracks their referrals automatically, and receives rewards when conversions happen — all triggered via WhatsApp with zero manual effort from you. Your 10 clients become your best sales team.</div>
+
+      <div class="addon-flow">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-content">
+            <div class="flow-title">Client Onboarding — Referral Link Generated</div>
+            <div class="flow-desc">Every new client automatically receives their unique referral link on WhatsApp — with a simple explanation of how it works and what they earn for referrals.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-content">
+            <div class="flow-title">Smart Referral Ask (Timing is Everything)</div>
+            <div class="flow-desc">AI waits until the optimal moment — after a milestone, positive result, or great session — to send the referral ask. Timing makes it feel natural, not pushy.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-content">
+            <div class="flow-title">Automatic Tracking & Attribution</div>
+            <div class="flow-desc">Every referral click, lead, and conversion is tracked automatically. You see in real time who's referring, who converted, and what each client is worth to your business.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-content">
+            <div class="flow-title">Auto-Reward Trigger on Conversion</div>
+            <div class="flow-desc">When a referred lead converts, the referring client instantly gets a thank-you WhatsApp with their reward (cash, discount, bonus session — your choice). Feels premium. Drives more referrals.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-right">
+      <div>
+        <div class="addon-price-block">
+          <div class="addon-was">Value: <span>₹65,000</span></div>
+          <div class="addon-price">₹38K</div>
+          <div class="addon-price-note">One-time · Works alongside any main package</div>
+        </div>
+
+        <div class="roi-callout">
+          <div class="roi-label">ROI Scenario</div>
+          <div class="roi-text">10 active clients × 1 referral each × 40% conversion = 4 new clients/month. At ₹20,000/client = ₹80,000 extra monthly revenue from existing clients alone.</div>
+        </div>
+
+        <ul class="feat-list">
+          <li><span class="feat-check">◆</span> Unique referral link per client (auto-generated)</li>
+          <li><span class="feat-check">◆</span> Smart timing engine for referral ask</li>
+          <li><span class="feat-check">◆</span> Full conversion tracking & attribution dashboard</li>
+          <li><span class="feat-check">◆</span> Automated reward trigger on referral conversion</li>
+          <li><span class="feat-check">◆</span> Referral leaderboard (gamifies for top referrers)</li>
+          <li><span class="feat-check">◆</span> Monthly "your referrals" update to each client</li>
+          <li><span class="feat-check">◆</span> Integrates with your existing CRM</li>
+          <li><span class="feat-check">◆</span> Works for coaches, local businesses & ecom</li>
+        </ul>
+      </div>
+
+      <div>
+        <a href="https://instagram.com/instaleads.india" class="addon-cta" target="_blank">DM "REFERRAL" to Get Started →</a>
+        <div class="setup-time">Setup: 7–10 days · Full tracking included</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- BUNDLE -->
+<div class="bundle-sec">
+  <div class="bundle-inner">
+    <div class="sec-tag">Maximum value</div>
+    <h2 class="sec-h2">Get all four. <em>Save ₹55,000.</em></h2>
+
+    <div class="bundle-card reveal">
+      <div class="bundle-top">
+        <div>
+          <div class="bundle-name">The Complete<br><em>Revenue Recovery Bundle</em></div>
+          <div class="bundle-tagline">All 4 add-ons together — dead lead revival, WhatsApp recovery, no-show elimination, and referral automation. Every revenue leak in your business, plugged simultaneously.</div>
+        </div>
+        <div class="bundle-price-block">
+          <div class="bundle-was">₹1,41,000 individually</div>
+          <div class="bundle-price">₹86K</div>
+          <div class="bundle-save">↑ You save ₹55,000</div>
+        </div>
+      </div>
+
+      <div class="bundle-addons">
+        <div class="bundle-addon">
+          <span class="ba-icon">👻</span>
+          <div class="ba-name">Ghost Lead Revival</div>
+          <div class="ba-price">₹35,000 alone</div>
+        </div>
+        <div class="bundle-addon">
+          <span class="ba-icon">💬</span>
+          <div class="ba-name">WhatsApp Recovery</div>
+          <div class="ba-price">₹40,000 alone</div>
+        </div>
+        <div class="bundle-addon">
+          <span class="ba-icon">📅</span>
+          <div class="ba-name">No-Show Eliminator</div>
+          <div class="ba-price">₹28,000 alone</div>
+        </div>
+        <div class="bundle-addon">
+          <span class="ba-icon">🔗</span>
+          <div class="ba-name">Referral Machine</div>
+          <div class="ba-price">₹38,000 alone</div>
+        </div>
+      </div>
+
+      <div class="bundle-extras">
+        <div class="bundle-extra"><span class="be-icon">⚡</span>Priority setup — all 4 live within 14 days, not sequentially</div>
+        <div class="bundle-extra"><span class="be-icon">🎯</span>Unified dashboard — all systems reporting in one place</div>
+        <div class="bundle-extra"><span class="be-icon">📞</span>2 strategy calls included to optimise all 4 systems</div>
+        <div class="bundle-extra"><span class="be-icon">🔄</span>Systems integrated with each other — dead lead revival feeds into WhatsApp recovery automatically</div>
+        <div class="bundle-extra"><span class="be-icon">📊</span>Monthly combined analytics report — total revenue recovered across all 4</div>
+        <div class="bundle-extra"><span class="be-icon">🛡️</span>45-day priority support (longest of any offering)</div>
+      </div>
+
+      <div class="bundle-cta-row">
+        <a href="https://instagram.com/instaleads.india" class="bundle-cta" target="_blank">DM "BUNDLE" to Get All 4 →</a>
+        <span class="bundle-note">50% advance to start · Balance on go-live day · WhatsApp support throughout</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VS SECTION -->
+<div class="vs-sec">
+  <div class="sec-tag">Why Insta Lead Systems</div>
+  <h2 class="sec-h2">Us vs. hiring a <em>marketing team</em></h2>
+  <div class="vs-grid">
+    <div class="vs-card them">
+      <div class="vs-header">
+        <div class="vs-label">Hiring In-House / Agency</div>
+        <span class="vs-tag">Old Way</span>
+      </div>
+      <ul class="vs-list">
+        <li><span class="vs-x">✕</span> ₹30,000–₹80,000/month salary per person</li>
+        <li><span class="vs-x">✕</span> 30–60 days to hire, onboard, and train</li>
+        <li><span class="vs-x">✕</span> Human error, sick days, turnover</li>
+        <li><span class="vs-x">✕</span> Works 9–6 only. Leads at 11pm? Missed.</li>
+        <li><span class="vs-x">✕</span> No system = everything restarts when they leave</li>
+        <li><span class="vs-x">✕</span> Agency takes weeks to show results</li>
+        <li><span class="vs-x">✕</span> You depend on them forever</li>
+        <li><span class="vs-x">✕</span> No visibility into what's actually working</li>
+      </ul>
+    </div>
+    <div class="vs-card us">
+      <div class="vs-header">
+        <div class="vs-label">Insta Lead Systems Add-Ons</div>
+        <span class="vs-tag">Our Way</span>
+      </div>
+      <ul class="vs-list">
+        <li><span class="vs-check">◆</span> One-time investment. Zero monthly fees.</li>
+        <li><span class="vs-check">◆</span> Live in 5–10 days, not months</li>
+        <li><span class="vs-check">◆</span> AI never sleeps, forgets, or has a bad day</li>
+        <li><span class="vs-check">◆</span> Responds to leads at 2am on a Sunday</li>
+        <li><span class="vs-check">◆</span> System is yours forever — no dependency</li>
+        <li><span class="vs-check">◆</span> Results visible from Week 1</li>
+        <li><span class="vs-check">◆</span> Full training so your team runs it independently</li>
+        <li><span class="vs-check">◆</span> Real-time dashboard showing exact ROI</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2 class="final-h">Stop losing leads<br><em>you already have.</em></h2>
+  <p class="final-p">Every one of these problems is costing you money right now. The fix is simpler — and cheaper — than you think.</p>
+  <div class="final-btns">
+    <a href="https://instagram.com/instaleads.india" class="btn-gold" target="_blank">DM Us to Get Started →</a>
+    <a href="#" class="btn-outline" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">View All Add-Ons ↑</a>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">Insta<em>Lead</em> Systems</div>
+  <div class="f-right">@instaleads.india · AI-Powered Growth for Indian Businesses · 2025</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
